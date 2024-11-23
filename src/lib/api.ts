@@ -7,11 +7,11 @@ interface FileMetadata {
   passwordProtected: boolean;
 }
 
-const BASE_LOCAL_API = "http://localhost:8000";
-const BASE_PROD_API = process.env.API_BASE;
+// const BASE_LOCAL_API = "http://localhost:8000";
+const BASE_PROD_API = "http://13.201.8.119:11010";
 
-const BASE_LOCAL_STORAGE = "http://localhost:8001";
-const BASE_PROD_STORAGE = process.env.STORAGE_BASE;
+// const BASE_LOCAL_STORAGE = "http://localhost:8001";
+const BASE_PROD_STORAGE = "http://13.201.8.119:11011";
 
 export async function convertToPdf(
   files: File[],
@@ -19,12 +19,12 @@ export async function convertToPdf(
   password: string = "",
 ) {
   try {
-    let BASE;
-    if (process.env.NODE_ENV === "development") {
-      BASE = BASE_LOCAL_API;
-    } else {
-      BASE = BASE_PROD_API;
-    }
+    let BASE = BASE_PROD_API;
+    // if (process.env.NODE_ENV === "development") {
+    //   BASE = BASE_LOCAL_API;
+    // } else {
+    //   BASE = BASE_PROD_API;
+    // }
     if (files.length === 1) {
       const formData = new FormData();
       formData.append("file", files[0]);
@@ -72,12 +72,12 @@ export async function convertToPdf(
 
 export const downloadZIP = async (urls: any) => {
   try {
-    let BASE;
-    if (process.env.NODE_ENV === "development") {
-      BASE = BASE_LOCAL_STORAGE;
-    } else {
-      BASE = BASE_PROD_STORAGE;
-    }
+    let BASE = BASE_PROD_STORAGE;
+    // if (process.env.NODE_ENV === "development") {
+    //   BASE = BASE_LOCAL_STORAGE;
+    // } else {
+    //   BASE = BASE_PROD_STORAGE;
+    // }
     const f = [];
     for (let i = 0; i < urls.length; i++) {
       f.push(urls[i].name);

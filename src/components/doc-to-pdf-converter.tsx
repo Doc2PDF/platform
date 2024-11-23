@@ -111,10 +111,7 @@ export default function DocToPdfConverter() {
         return;
       }
       let res: ConvertedFile[] = [];
-      let base = process.env.BASE_PROD_STORAGE;
-      if (base == "" || base == undefined) {
-        base = "http://localhost:8001";
-      }
+      let base = "http://13.201.8.119:11011";
       if (result.data.path) {
         res.push({
           name: result.data.path,
