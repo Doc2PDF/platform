@@ -111,16 +111,20 @@ export default function DocToPdfConverter() {
         return;
       }
       let res: ConvertedFile[] = [];
+      let base = process.env.BASE_PROD_STORAGE;
+      if (base == "" || base == undefined) {
+        base = "http://localhost:8001";
+      }
       if (result.data.path) {
         res.push({
           name: result.data.path,
-          downloadUrl: `http://localhost:8001/download/${result.data.path}`,
+          downloadUrl: `${base}/download/${result.data.path}`,
         });
       } else {
         for (let i = 0; i < result.data.files.length; i++) {
           res.push({
             name: result.data.files[i],
-            downloadUrl: `http://localhost:8001/download/${result.data.files[i]}`,
+            downloadUrl: `${base}/download/${result.data.files[i]}`,
           });
         }
       }
